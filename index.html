@@ -7,6 +7,14 @@
     <title>Document</title>
 </head>
 <body>
-    Just test websockets
+    Just test websockets 123
+
+    <script>
+        const ws = new WebSocket('ws://localhost:8073');
+
+        ws.addEventListener('open', () => {
+            console.log("I'm connected");
+        });
+    </script>
 </body>
 </html>
