@@ -7,11 +7,11 @@
     <title>Document</title>
 </head>
 <body>
-    Just test websockets 123
+    <h2>Just test websockets</h2>
 
-    <button id="close-ws">Close connection</button>
     <input type="text" placeholder="type message to server" />
     <button id="send">Send</button>
+    <button id="close-ws">Close connection</button>
 
     <script>
         const ws = new WebSocket('ws://localhost:8073');
@@ -28,8 +28,13 @@
         }
 
         ws.addEventListener('open', () => {
-            console.log("I'm connected");
+            console.log("I'm connected"); 
         });
+
+        ws.addEventListener('message', ({data}) => {
+            console.log("Message from server: " + data); 
+        });
+
 
         const btnClose = document.querySelector('#close-ws');
         btnClose.addEventListener('click', closeConnection);

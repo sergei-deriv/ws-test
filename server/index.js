@@ -11,5 +11,7 @@ wss.on('connection', ws => {
 
     ws.on('message', data => {
         console.log('The client sent this message: ' + data);
+
+        ws.send('You wrote me this: ' + data);
     })
 })
