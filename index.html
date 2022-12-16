@@ -16,29 +16,32 @@
     <script>
         const ws = new WebSocket('ws://localhost:8073');
 
+        // close ws
         function closeConnection() {
             console.log('trying to close ws');
             ws.close(1000, 'Closed by button click');
         }
 
+        // send message to server
         function sendMessage() {
             console.log('trying to send a message');
             const input = document.querySelector('input');
             ws.send(input?.value);
         }
 
+        // add listener when ws open
         ws.addEventListener('open', () => {
             console.log("I'm connected"); 
         });
-
+        // add listener for every message from server
         ws.addEventListener('message', ({data}) => {
             console.log("Message from server: " + data); 
         });
 
-
+        // add listener for click by close button
         const btnClose = document.querySelector('#close-ws');
         btnClose.addEventListener('click', closeConnection);
-
+        // add listener for click by send button
         const btnSend = document.querySelector('#send');
         btnSend.addEventListener('click', sendMessage);
 
