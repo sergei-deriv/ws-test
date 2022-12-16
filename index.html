@@ -9,12 +9,35 @@
 <body>
     Just test websockets 123
 
+    <button id="close-ws">Close connection</button>
+    <input type="text" placeholder="type message to server" />
+    <button id="send">Send</button>
+
     <script>
         const ws = new WebSocket('ws://localhost:8073');
+
+        function closeConnection() {
+            console.log('trying to close ws');
+            ws.close(1000, 'Closed by button click');
+        }
+
+        function sendMessage() {
+            console.log('trying to send a message');
+            const input = document.querySelector('input');
+            ws.send(input?.value);
+        }
 
         ws.addEventListener('open', () => {
             console.log("I'm connected");
         });
+
+        const btnClose = document.querySelector('#close-ws');
+        btnClose.addEventListener('click', closeConnection);
+
+        const btnSend = document.querySelector('#send');
+        btnSend.addEventListener('click', sendMessage);
+
+
     </script>
 </body>
 </html>

@@ -8,4 +8,8 @@ wss.on('connection', ws => {
     ws.on('close', () => {
         console.log('Server has disconnected');
     });
+
+    ws.on('message', data => {
+        console.log('The client sent this message: ' + data);
+    })
 })
